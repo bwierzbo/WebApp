@@ -6,11 +6,12 @@ import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
 const schema = a.schema({
     Todo: a.model({
         content: a.string(),
-        isDone: a.boolean()
+        isDone: a.boolean(),
     }).authorization(allow => [allow.owner().to(['read', 'delete'])]),
     Post: a.model({
-        content: a.string(),
-        isDone: a.boolean()
+        title: a.string().required(),
+        id: a.string(),
+        isDone: a.boolean(),
         
       }).authorization(allow => [allow.owner().to(['read', 'delete'])]),
 

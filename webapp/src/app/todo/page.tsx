@@ -13,7 +13,11 @@ const Todo = async ({ params }: { params: { id: string } }) => {
 
     const isSignedIn = await isAuthenticated();
         const fetchTodos = async () => {
-          const { data: todo, errors } = await cookieBasedClient.models.Todo.list();
+          const { data: todo, errors } = await cookieBasedClient.models.Post.list({
+            selectionSet: ["title", "id"],
+            authMode: "apiKey",
+          });
+          
       
           if (!errors) {
             return todo;
